@@ -3,22 +3,22 @@ module Lobuki
       def initialize
         create_session
       end
-  
+
       def self.check
         new.check
       end
-  
+
       def check
         login
         set_attend
       ensure
         sesion.quit
       end
-  
+
       private
-  
+
       attr_accessor :sesion
-  
+
       def login
         sesion.visit('https://coyote.resuelve.io/')
         sleep(2)
@@ -58,7 +58,7 @@ module Lobuki
         }")
         sesion.evaluate_script('window.requestAttend();')
       end
-  
+
       def build_auth_token
         raw_token = sesion.evaluate_script("window.localStorage.getItem('COYOTE_AUTH_TOKEN');")
         coyote_auth_token = JSON.parse(raw_token)
@@ -66,22 +66,22 @@ module Lobuki
         employee_id = JSON.parse(user_info)['id']
         "#{coyote_auth_token}|#{employee_id}"
       end
-  
+
       def create_session
         profile = Selenium::WebDriver::Firefox::Profile.new
         profile['geo.enabled'] = false
         profile['geo.provider.use_corelocation'] = false
         profile['geo.prompt.testing'] = false
         profile['geo.prompt.testing.allow'] = false
-  
+
         Capybara.register_driver :firefox do |app|
           Capybara::Selenium::Driver.new(app, browser: :firefox, options: options)
         end
-  
+
         Capybara.javascript_driver = :firefox
         @sesion = Capybara::Session.new(:firefox)
       end
-  
+
       def options
         Selenium::WebDriver::Firefox::Options.new.tap do |opts|
           opts.args << '--width=1024'
