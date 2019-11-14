@@ -1,39 +1,42 @@
 # Lobuki
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/lobuki`. To experiment with that code, run `bin/console` for an interactive prompt.
+Bienvenido a Lobuki 💅, el Web Scraper para ~~truquear~~ automatizar tus tareas
+de [Coyote](https://coyote.resuelve.io/inicio) (Sistema de administración de personal de Resuelve).
 
-TODO: Delete this and the text above, and describe your gem
+## TO-DO
+Esta gema aún continua en desarrollo, si quieres contribuir con funcionalidades 
+"interesantes" que faltan por desarrollar.
 
-## Installation
+- A partar comida
+- Contestas el motivometro
 
-Add this line to your application's Gemfile:
+## Desarrollo
+No se te olvide que tienes que tener instalado [ruby >= 2.5.1](https://www.ruby-lang.org/es/) 
+y [bundler](https://bundler.io/) para poder instalar las dependencias.
 
-```ruby
-gem 'lobuki'
+Construir gema:
+
+```
+gem build lobuki.gemspec
 ```
 
-And then execute:
+```
+gem insall ./lobuki-[version].gem
+```
+ 
 
-    $ bundle
+## ¿Como se usa esto?
 
-Or install it yourself as:
+Antes de todo tienes que crear las variables de entorno `GOOGLE_USER` y `GOOGLE_PASSWORD`
+las cuales son necesrias para poder hacer Login en Coyote.
 
-    $ gem install lobuki
+Para marcar tu hora de entrada y ser un colaborador ~~responsable~~ solo ejecuta la
+siguiente función detro de una sesión de `irb` y hacer el import de la gema:
 
-## Usage
+```ruby
+    require 'lobuki'
+```
 
-TODO: Write usage instructions here
-
-## Development
-
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
-
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
-
-## Contributing
-
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/lobuki.
-
-## License
-
-The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
+```ruby
+    Lobuki::Attends.check
+```
