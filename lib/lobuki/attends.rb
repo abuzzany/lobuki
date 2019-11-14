@@ -37,7 +37,7 @@ module Lobuki
         sleep(3)
         sesion.driver.browser.switch_to.window(main)
       end
-  
+
       def set_attend
         sesion.visit('https://coyote.resuelve.io/asistencias')
         sleep(2)
