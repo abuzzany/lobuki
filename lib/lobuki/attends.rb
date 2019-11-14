@@ -27,11 +27,11 @@ module Lobuki
         main = sesion.driver.browser.window_handles.first
         popup = sesion.driver.browser.window_handles.last
         sesion.driver.browser.switch_to.window(popup)
-        sesion.fill_in('identifierId', with: '')
+        sesion.fill_in('identifierId', with: ENV['GOOGLE_USER'])
         sleep(2)
         sesion.find_by_id('identifierNext').click
         sleep(2)
-        sesion.fill_in('password', with: '')
+        sesion.fill_in('password', with: ENV['GOOGLE_PASSWORD'])
         sleep(2)
         sesion.find_by_id('passwordNext').click
         sleep(3)
